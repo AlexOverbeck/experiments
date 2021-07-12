@@ -1,3 +1,6 @@
+@import url('./components/data-table.css');
+@import url('./utilities.css');
+
 :root {
   --main-background: #F9F9F9;
   --font-color: #4B4B4B;
@@ -24,45 +27,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-button {
-  all: unset;
-  cursor: pointer;
-  padding: .25rem;
-}
-
-button i {
-  margin-right: .25rem;
-}
-
-table {
-  border-collapse: collapse;
-  border-top: 1px solid var(--border-color);
-  width: 100%;
-}
-
-th {
-  font-size: .9375rem;
-  font-weight: normal;
-  padding: 1rem .5rem;
-  text-align: left;
-}
-
-tr {
-  border: 1px solid var(--border-color);
-}
-
-tbody tr {
-  cursor: pointer;
-}
-
-tbody tr:hover {
-  background: var(--hover-background);
-}
-
-td {
-  padding: .5rem;
-}
-
 .wrapper {
   align-items: center;
   display: flex;
@@ -77,40 +41,20 @@ td {
   max-width: 64.25rem;
 }
 
-.actions {
-  padding: 1.125rem .5rem;
-  font-size: 1.125rem;
-  display: flex;
+.button {
+  all: unset;
+  cursor: pointer;
+  padding: .25rem;
+}
+
+.button--with-icon {
   align-items: center;
-}
-
-.selected-count {
-  margin: 0 2rem 0 1rem;
-}
-
-.selected {
-  background: var(--selected-background);
-  border-color: var(--border-color-dark);
-}
-
-.status {
-  padding-left: 2.5rem;
+  display: flex;
   position: relative;
-  text-transform: capitalize;
+  padding-left: 1.75rem;
 }
 
-.available {
-  display: flex;
-  align-items: center;
-}
-
-.available::before {
-  border-radius: 100%;
-  background-color: var(--available-color);
-  content: "";
-  display: block;
-  height: 1rem;
-  left: .5rem;
+.button__icon {
   position: absolute;
-  width: 1rem;
+  left: .5rem;
 }

@@ -19,15 +19,9 @@ module('Acceptance | application', function (hooks) {
     assert.dom('table tbody tr').exists();
   });
 
-  test.skip('a specific file can be selected and downloaded', async function (assert) {
+  test.skip('a specific file can be selected and downloaded', async function (assert) {});
 
-  });
+  test.skip('multiple files can be selected and downloaded', async function (assert) {});
 
-  test.skip('multiple files can be selected and downloaded', async function (assert) {
-
-  });
-
-  test.skip('all the files can be selected and downloaded', async function (assert) {
-
-  });
+  test.skip('all the files can be selected and downloaded', async function (assert) {});
 });
