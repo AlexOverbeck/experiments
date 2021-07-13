@@ -10,13 +10,19 @@ module('Integration | Component | data-table', function (hooks) {
     await render(hbs`<DataTable />`);
 
     assert.dom('table').exists();
+  });
 
-    assert.dom('table thead').hasText(/name/i);
-    assert.dom('table thead').hasText(/device/i);
-    assert.dom('table thead').hasText(/path/i);
-    assert.dom('table thead').hasText(/status/i);
+  test('the table renders data in an expected table format', async function(assert) {
+    this.set('tableData', [{
+      columnOneHeader: 'columnOneValue',
+      columnTwoHeader: 'columnTwoValue',
+    }]);
 
-    assert.dom('table tbody tr').exists();
+    await render(hbs`<DataTable @tableData={{this.tableData}}/>`);
+    assert.dom('table thead').hasText(/columnOneHeader/i);
+    assert.dom('table thead').hasText(/columnTwoHeader/i);
+    assert.dom('table tbody').hasText(/columnOneValue/i);
+    assert.dom('table tbody').hasText(/columnTwoValue/i);
   });
 
   test('it renders an action section with controls to select all and download', async function (assert) {
