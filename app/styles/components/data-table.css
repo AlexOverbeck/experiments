@@ -44,7 +44,7 @@
   border-color: var(--border-color-dark);
 }
 
-.table .column-status {
+.table .column-accent {
   align-items: center;
   display: flex;
   padding-left: 2.5rem;
@@ -52,9 +52,9 @@
   text-transform: capitalize;
 }
 
-.table .column-status--available::before {
+.table .column-accent--positive::before {
   border-radius: 100%;
-  background-color: var(--available-color);
+  background-color: var(--positive-color);
   content: '';
   display: block;
   height: 1rem;

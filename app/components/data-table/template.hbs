@@ -1,36 +1,71 @@
 <div class="data-table">
-  <div class="data-table__actions">
-    <div>
-      <label for="select-all-rows" class="visually-hidden">Select All Rows</label>
-      <input id="select-all-rows" type="checkbox">
+  {{#if @selectable}}
+    <div class="data-table__actions">
+      <div>
+        <input
+          type="checkbox"
+          aria-label="Select all rows"
+          indeterminate={{this.indeterminateRowSelection}}
+          checked={{this.allRowsSelected}}
+          {{on "change" this.toggleSelectAll}}
+        >
+      </div>
+      <div class="data-table__selected-count">
+        <span>Selected {{this.selectedCount}}</span>
+      </div>
+      <div>
+        <button
+          class="button button--with-icon"
+          type="button"
+          {{on "click" this.selectedAction}}
+        >
+          <i class="button__icon fas fa-arrow-alt-to-bottom"></i>
+          {{@selectedActionText}}
+        </button>
+      </div>
     </div>
-    <div class="data-table__selected-count">
-      <span>Selected 2</span>
-    </div>
-    <div>
-      <button class="button button--with-icon" type="button">
-        <i class="button__icon fas fa-arrow-alt-to-bottom"></i>
-        Download Selected
-      </button>
-    </div>
-  </div>
+  {{/if}}
   <table class="table">
     <thead class="table__head">
       <tr>
-        <th></th>
+        {{#if @selectable}}
+          <th></th>
+        {{/if}}
         {{#each this.tableHeaders as |header|}}
-          <th>{{header}}</th>
+          <th
+            class="{{if (eq @accentedColumn header) 'column-accent'}}"
+          >
+            {{header}}
+          </th>
         {{/each}}
       </tr>
     </thead>
     <tbody>
       {{#each this.tableData as |row|}}
-        <tr class="table__row">
-          <td>
-            <input type="checkbox">
-          </td>
-          {{#each this.tableHeaders as |column|}}
-            <td>{{get row column}}</td>
+        <tr
+          class="table__row {{if row.selected 'table__row--selected'}}"
+        >
+          {{#if @selectable}}
+            <td>
+              <Input
+                @type="checkbox"
+                @checked={{row.selected}}
+                {{on "change" (fn this.toggleRowSelection row)}}
+              />
+            </td>
+          {{/if}}
+          {{#each this.tableHeaders as |header|}}
+            {{#let (get row.rowData header) as |column| }}
+              {{#if (eq @accentedColumn header) }}
+                <td
+                  class="column-accent {{if (eq @accentedValue column) 'column-accent--positive'}}"
+                >
+                  {{column}}
+                </td>
+              {{else}}
+                <td>{{column}}</td>
+              {{/if}}
+            {{/let}}
           {{/each}}
         </tr>
       {{/each}}
